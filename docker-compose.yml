@@ -1,10 +1,11 @@
-version: '3'
+version: '3.3'
 
 services:
-  minecraft-server:
-    image: openjdk:8-jdk
+  server:
+    image: openjdk:17
     volumes:
-      - ./server.jar:/minecraft/server.jar
+      - ./server-files/:/minecraft/server-files
     ports:
       - 25565:25565
-    command: java -Xms2G -Xmx4G -jar /minecraft/server.jar
+    command: /minecraft/server-files/start.sh
+  
