@@ -1,12 +1,14 @@
 #!/bin/bash
 
-SERVER_PATH="/minecraft/server-files"  # 
-EULA_FILE="$SERVER_PATH/eula.txt"
+SERVER_PATH="/minecraft/server-files"  # Path to server directory
+EULA_FILE="$SERVER_PATH/eula.txt" # Location of expected eula file
+MIN_GB=1G # Min amount of GB to use for the Server
+MAX_GB=8G # Max amount of GB to use for the Server
 
-chmod -R a+r $SERVER_PATH
+chmod -R a+r $SERVER_PATH # Change permissions to make files readable
 
-java -Xms2G -Xmx4G -jar "$SERVER_PATH/server.jar" nogui || 
-chmod -R a+r $SERVER_PATH &&
-echo "eula=true" > eula.txt
-chmod -R a+r $SERVER_PATH &&
-java -Xms2G -Xmx4G -jar "$SERVER_PATH/server.jar" nogui
+java -Xms"${MIN_GB}" -Xmx"${MAX_GB}" -jar "$SERVER_PATH/server.jar" nogui || # Start server to generate files
+chmod -R a+r $SERVER_PATH # Required for next step (idk why)
+echo "eula=true" > eula.txt # Change eula=false to true
+chmod -R a+r $SERVER_PATH # Make everything readable
+java -Xms"${MIN_GB}" -Xmx"${MAX_GB}" -jar "$SERVER_PATH/server.jar" nogui # Final start with all files there
