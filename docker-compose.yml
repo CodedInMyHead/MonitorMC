@@ -27,6 +27,18 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
   
+  grafana:
+    image: grafana/grafana:latest
+    networks:
+      monitoring:
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  grafana_data:
+  
 networks:
   monitoring:
     driver: bridge
