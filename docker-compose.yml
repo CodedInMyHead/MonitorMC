@@ -4,16 +4,21 @@ services:
   server:
     image: openjdk:17
     restart: always
+    networks:
+      monitoring:
     volumes:
-      - ./server-files/:/minecraft/server-files
-      - ./plugin/:/minecraft/server-files/plugin
+      - ./server-files/server.jar:/setup/server.jar
+      - ./server-files/start.sh:/setup/start.sh
+      - ./plugins/:/plugins
     ports:
       - 25565:25565
       - 8080:8080
-    command: /minecraft/server-files/start.sh
+    command: /setup/start.sh
 
   prometheus:
     image: prom/prometheus
+    networks:
+      monitoring:
     ports:
       - 9090:9090
     volumes:
@@ -21,3 +26,6 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
   
+networks:
+  monitoring:
+    driver: bridge
