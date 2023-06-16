@@ -13,6 +13,7 @@ services:
     ports:
       - 25565:25565
       - 8080:8080
+      - 8123:8123
     command: /setup/start.sh
 
   prometheus:
