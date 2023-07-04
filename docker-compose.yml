@@ -2,19 +2,16 @@ version: '3.3'
 
 services:
   server:
-    image: openjdk:17
+    image: monitormc:latest
     restart: always
     networks:
       monitoring:
     volumes:
-      - ./server-files/server.jar:/setup/server.jar
-      - ./server-files/start.sh:/setup/start.sh
       - ./plugins/:/plugins
     ports:
       - 25565:25565
       - 8080:8080
       - 8123:8123
-    command: /setup/start.sh
 
   prometheus:
     image: prom/prometheus
