@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   server:
-    image: monitormc:latest
+    image: monitormc/monitormc
     restart: always
     networks:
       monitoring:
