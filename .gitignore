@@ -3,3 +3,7 @@ plugins/bStats
 plugins/dynmap
 
 /ssh
+*.tfstate
+*.backup
+*.hcl
+*.1_x5
