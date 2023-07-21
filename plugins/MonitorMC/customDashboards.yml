@@ -1,0 +1,15 @@
+grafana-url: https://www.google.de
+dashboards:
+  Test Metric:
+    grafana-filter: test
+    material: diamond_block
+    lore:
+      - This is a test metric
+      - Second lore line
+  Deaths:
+    grafana-filter: deaths/all
+    material: skeleton_skull
+    lore:
+      - Shows the deaths of all Players
+  Kills:
+    grafana-filter: kills

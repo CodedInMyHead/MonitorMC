@@ -7,5 +7,5 @@ variable "project_id" {
 variable "hostname" {
     type = string
     description = "hostname in FQDN"
-    default = "minecraftserver"
+    default = "minecraft"
 }
